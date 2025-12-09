@@ -51,7 +51,7 @@ Right now...this works best using:
 
 [How to Setup Your Environment](./env-setup.md)
 
-## Demos
+## Demo with CRIT prompts
 
 Let's look at some demos to show you the _Art of the Possible_.  
 
@@ -60,7 +60,7 @@ Let's look at some demos to show you the _Art of the Possible_.
   * CRIT prompting
   * using Microsoft Fabric for Vibe Analytics (Guided Analytics)
 
-  ### Demo:  Can the LLM spot the problem with our data and recommend prescriptive actions?  
+## Demo:  Can the LLM spot the problem with our data and recommend prescriptive actions?  
 
   Even more importantly, can you figure it out?  
 
