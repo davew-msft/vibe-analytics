@@ -64,7 +64,7 @@ Let's look at some demos to show you the _Art of the Possible_.
 
   Even more importantly, can you figure it out?  
 
-  [Follow along in this Fabric Spark notebook]()
+  [Follow along in this Fabric Spark notebook](./CognitiveMistakes.ipynb)
 
 
 
