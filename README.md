@@ -89,3 +89,27 @@ todo:
 
 * ice cream sales:  https://github.com/davew-msft/infonomics/blob/master/Behavioral_Analytics.ipynb
 * social media:  https://github.com/davew-msft/infonomics/blob/master/SocialMediaCampaignAnalytics.ipynb
+  * https://github.com/davew-msft/MarketingAnalytics/blob/master/SocialMediaCampaignAnalytics.ipynb
+* CLV:  https://github.com/davew-msft/MarketingAnalytics/blob/master/CustomerLifetimeValue.ipynb
+  * CLV alt:  https://github.com/davew-msft/CustomerAnalytics/blob/master/CustomerLifetimeValue.ipynb
+* LeadScoring:  https://github.com/davew-msft/MarketingAnalytics/blob/master/LeadScoring.ipynb
+* Customer Segmentation analytics:  https://github.com/davew-msft/CustomerAnalytics/blob/master/CustomerSegmentationAnalytics.ipynb
+* churn analytics:  https://github.com/davew-msft/CustomerAnalytics/blob/master/ChurnAnalytics.ipynb
+* bank customer churn:  https://github.com/davew-msft/CustomerAnalytics/blob/master/BankCustomerChurn.ipynb
+* WineEDA:  https://github.com/davew-msft/CustomerAnalytics/blob/master/WineEDA-python.ipynb
+* Linear Programming/dwell analytics:  https://github.com/davew-msft/PrescriptiveAnalytics/blob/master/Prescriptive_Analytics.ipynb
+
+wv/PrescriptiveAnalytics: may have stuff for the above
+
+search for "Store Staffing" in 1note, this is very close to the q example in PrescriptiveAnalytics
+
+search for "demand pricing" in 1note for example.
+
+customer segmentation: search 1note for "custsegexample"
+
+customer churn: search in 1note for "custchurnexample"
+
+-------------
+
+I'm a CPG company....can you explain "weighted ACV"
+I'm a data scientist and I'd like to create a demo to describe ACV concepts to people that are not in the CPG space.  It should be something non-intuitive and maybe show a little "plot twist".  Any ideas?  I want to show this using AI and jupyter notebooks.  
