@@ -51,7 +51,7 @@ Right now...this works best using:
 
 [How to Setup Your Environment](./env-setup.md)
 
-## Demo with CRIT prompts
+## 1. Demo with CRIT prompts
 
 Let's look at some demos to show you the _Art of the Possible_.  
 
@@ -60,11 +60,16 @@ Let's look at some demos to show you the _Art of the Possible_.
   * CRIT prompting
   * using Microsoft Fabric for Vibe Analytics (Guided Analytics)
 
-## Demo:  Can the LLM spot the problem with our data and recommend prescriptive actions?  
+## 2. Demo:  Can the LLM spot the problem with our data and recommend prescriptive actions?  
 
   Even more importantly, can you figure it out?  
 
   [Follow along in this Fabric Spark notebook](./CognitiveMistakes.ipynb)
 
+## 3. 
+
+todo:  
 
 
+* ice cream sales:  https://github.com/davew-msft/infonomics/blob/master/Behavioral_Analytics.ipynb
+* social media:  https://github.com/davew-msft/infonomics/blob/master/SocialMediaCampaignAnalytics.ipynb
