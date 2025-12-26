@@ -35,6 +35,22 @@ EDA also involves:
 
 This work is cumbersome and error-prone, even for the best data scientists and engineers. LLMs to the rescue!
 
+## High Level Workflow
+
+* Start with a [CRIT (Context, Role, Interview, Task) prompt](https://sgd.com.au/upgrade-your-ai-prompts-with-the-crit-framework/)
+  * this expresses your intent
+* observe intermediate results
+* refine your thought processes and prompts
+* discover patterns
+* generate new knowledge and understanding
+
+> This is exactly how a business person makes data-driven decisions.  We are simply using a prompt framework (CRIT) to provide structured guidance to the process, with the LLM being the enabler.  
+
+### Why is this better than how we've done it for decades?
+
+* We take static dashboards and metrics and turn them into dynamic dialogues that expose hidden meaning in the data.  
+* We get true _prescriptive analytics_ (the data is telling us something..._what do we do next_)
+* We are moving closer to _behaviorial analytics_ (How can I mold my customer decision-making processes?)
 
 ## What do I need to get started?
 
