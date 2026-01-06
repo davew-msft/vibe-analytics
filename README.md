@@ -331,3 +331,7 @@ FilePath = C:\dave\RefDocs\AI\Cognitive Computing Recipes.pdf
 				Name = an example
 				PageNo = 171
 			]
+
+ice cream at convenience store:  behaviiraldataanalysis.pdf p31
+
+hotel bookings behaviroaldataanalysis.pdf p 106
