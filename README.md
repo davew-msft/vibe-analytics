@@ -335,3 +335,117 @@ FilePath = C:\dave\RefDocs\AI\Cognitive Computing Recipes.pdf
 ice cream at convenience store:  behaviiraldataanalysis.pdf p31
 
 hotel bookings behaviroaldataanalysis.pdf p 106
+
+
+Pharma/Manufacturing
+
+Why did GTN worsen for our blockbuster product last quarter?  
+
+GTN is one of the hardest aspects for a proddev/manufacturer to analyze because the data is fragmented across finance, contracting, distribution, and various analytics systems.  Traditionally, to answer the GTN problem, data teams would build a series of dashboards to visually explain the data.  While that's interactive, it isn't _conversational_.  I can't explore the data and ask deeper questions, especially if key data elements are missing.  If I do expect this level of custom analysis it usually takes weeks to get on a data team's backlog and have them do the work.  While not perfect, being able to "vibe with the data" is getting a step closer for a business person to ask questions about the data BEFORE they get the data team involved.   
+
+Context:  
+
+We are a pharmaceuticals manufacturer.  Our blockbuster product is experiencing gross-to-net erosion over the last quarter.  Nobody seems to know why.  
+
+* Finance blames rebates
+* Sales blames contracts
+* Ops blames returns
+
+My analytics team is overworked and they can't really build us a dashboard to show causal reasons for GTN erosion because, frankly, we don't know where to begin looking.  I'm hoping we can do some preliminary work before we get them involved.  
+
+Role:
+You are a data scientist with 10 years of experience doing analytics in the pharmaceutical manufacturing space.  We've just brought you on-board as a consultant to help us with this analysis.  You should assume you are interacting with executives that likely do not know much about data, analytics, and data science, but do know a lot about their industry.  
+
+Interview:
+I am going to give you access to an initial dataset of the data we have available for recent transactions.  I want you to look at the data and ask me questions about it and I will hunt down the answers.  
+
+Task:
+
+I am going to give you 
+
+First, design a high level 
+
+Why is gross-to-net worsening?  
+“Summarize the key GTN risks for Product A that leadership should focus on.”
+
+“Which components drove most of the change?”
+Ranks rebate, chargeback, returns impact
+Shows delta contribution
+
+“Rebates increased by 3.2 points, driven primarily by Specialty channel contracts.”
+
+You pause and say:
+
+“This normally takes a custom analysis request.”
+
+ok, let's look at channel and contract analysis:
+
+“Break that down by channel.”
+
+ChatGPT:
+
+Groups by Channel
+
+Shows GTN % by channel
+
+Highlights outliers
+
+“Why did Specialty worsen?”
+
+ChatGPT:
+
+Identifies contract type or payer mix shift
+
+Explains in words, not just numbers
+
+User:
+
+“Is this volume-driven or rate-driven?”
+
+ChatGPT:
+
+Compares:
+
+Average rebate rate
+
+Volume mix
+
+Explains which effect dominates
+
+
+
+
+Step 5: Forward-Looking Question
+
+User:
+
+“If Specialty volume grows another 10%, what happens to GTN?”
+
+ChatGPT:
+
+Applies simple scenario logic
+
+Explains assumptions
+
+Produces projected GTN
+
+Important Callout
+
+“This is not a black box forecast—it’s transparent and auditable.”
+
+
+summary:
+
+
+“Instead of a dashboard, we start with a question.”
+
+“The user is now doing analytics, not consuming it.”
+
+Old World	With ChatGPT
+Static dashboards	Conversational exploration
+Analyst bottleneck	User-driven analysis
+SQL required	Natural language
+Numbers only	Numbers + explanation
+Long cycle time	Minutes
+
+“This is deterministic math wrapped in a conversational interface.”
