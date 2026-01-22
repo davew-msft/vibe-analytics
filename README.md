@@ -449,3 +449,7 @@ Numbers only	Numbers + explanation
 Long cycle time	Minutes
 
 “This is deterministic math wrapped in a conversational interface.”
+
+
+https://github.com/mariansiwiak/Generative_AI_for_Data_Analytics
+Brazilian E-Commerce Public Dataset by Olist
