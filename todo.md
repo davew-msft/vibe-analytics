@@ -431,3 +431,17 @@ Long cycle time	Minutes
 
 https://github.com/mariansiwiak/Generative_AI_for_Data_Analytics
 Brazilian E-Commerce Public Dataset by Olist
+
+
+CLV:
+Instead of the constant retention rate found in some models
+of CLV, we have purchase-occasion-specific rates.  
+do this in the context of "I'm a banking evaluating a loan"  
+maybe we do want customers to churn.  
+
+
+What you might not be familiar with is how odds can be
+applied to marketing analytics. What are the chances a
+customer will buy your product versus the chances he or she
+won’t? What are the chances you will retain a customer versus
+the chances you will lose him or her?
