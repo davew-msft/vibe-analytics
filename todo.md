@@ -445,3 +445,17 @@ applied to marketing analytics. What are the chances a
 customer will buy your product versus the chances he or she
 won’t? What are the chances you will retain a customer versus
 the chances you will lose him or her?
+
+search for "Store Staffing" in 1note, this is very close to the q example in PrescriptiveAnalytics
+
+search for "demand pricing" in 1note for example.
+
+customer segmentation: search 1note for "custsegexample"
+
+customer churn: search in 1note for "custchurnexample"
+
+end of ChurnAnalytics.ipynb
+
+CLV in CustomerBehavioralanalytics.ipynb
+
+finish wv/_custAnalytics
