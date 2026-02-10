@@ -85,3 +85,7 @@ Let's look at some demos to show you the _Art of the Possible_.
 ## 3. Demo:  Marketing Surveys
 
 [Follow along in this Fabric Spark notebook](./MarketingAnalytics/Marketing.ipynb)
+
+## 4. Demo:  Using Excel
+
+[We can do analytics on Excel data that is really hard to do with JUST excel](./excel-example/Reading-Comprehension.xlsx)
