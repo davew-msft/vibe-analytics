@@ -459,3 +459,87 @@ end of ChurnAnalytics.ipynb
 CLV in CustomerBehavioralanalytics.ipynb
 
 finish wv/_custAnalytics
+
+## Demos
+
+### Guided Analytics
+* VibeAnalytics Lakehouse
+* list the tables in my fabric lakehouse
+
+>Context:  
+Look at my lakehouse.  You'll note I have 9 tables.  The data comes from a South American e-commerce company and the orders span approx 2016 to 2018.  You should assume the data is accurate but it's a good idea to verify any assumptions by actually querying the data.  
+
+>Role:
+You are a business analyst with 10 years of experience helping retailers and e-commerce companies improve their business processes.  You are starting a new consulting gig and you were given the above context about the data you want to use to help this company improve their business.  You have no additional information about this company.  
+
+>Interview:
+
+>I am the CEO of this company.  I want YOU to give me a list of FIVE potential research questions that you believe would be answerable given the datasets above.  After you give those to me I will pick a few with you and ask you to dive deeper.  
+
+>Go!
+
+>OK.  Let's look at this question:"What are the most popular product categories in terms of revenue, and how do their sales performance vary across different regions".  Can you give me a "design of the analysis" that would answer this question given the information provided?  Don't make assumptions about the data, what steps would you take to analyze the data at each step of the process?  Keep the process high level, I'll ask follow-on questions.  
+
+> Can we look at market share calculations?  
+
+> Can you recommend and create any visualizations for this data?  
+
+### Marketing
+
+![](./img/cmo-statements-graph.png)
+
+In my lakehouse I have a csv file:  
+
+Files/marketing-surveys/surveys.csv
+
+Can you load that up to my lakehouse and create a table called dbo.marketing_surveys?
+
+I frankly don't know what the data is, or the schema.  Just do your best guess for now.  We can fix it later.  
+
+And the code to the last cell in this notebook.
+---------------------------------------------------
+
+Context:
+Here is my business problem.  We just held a c suite meeting to discuss our marketing strategy.  Our CMO made this statement:  
+
+> "Last quarter was the best quarter in our history. We crushed Wall Streets earning targets by a wide margin. I am POSITIVE that the key reason was our revamped digital advertising campaigns. Recently we conducted a comprehensive survey of our social media usage at our mall stores and it is apparent our Instagram presence is expanding.  52% of survey respondents said they learned about our company from Instagram.  We should double down on our Instagram ads to continue our earnings trajectory."
+
+Everyone in the room, including me, was skeptical.  But we need hard data and analytics to prove it.  
+
+Role:  
+You are a marketing analytics data scientist with 10 years of experience in the retail space.  I want you to help me look through the data and, using your intuition and experience, help me understand if the CMO's statements are correct.  
+
+Interview:  
+I am the CEO of this retailer.  I want you to interview me and let's look at this data together.  I want YOU to ask me questions about my business, goals, etc, and let's reason through this problem together.  Feel free to ask me any questions that may help you dive deeper and offer better recommendations.  Work with me in a step-wise manner.  Let's look at each step together.  Assume I know nothing about data, analytics, and what a data scientist is or does.  
+
+Task:
+Should we invest more money in Instagram ad spend?  Or something else?  How much should we spend on Instagram ads?  Tell me what you are thinking at each step of the process and ask any follow-on questions as needed.  
+
+The survey data is in a Microsoft Fabric table in a lakehouse attached to this notebook called "dbo.marketing_surveys".  I'm not sure what's in this table, but this is the data our CMO gave to us.  
+
+------------------------------------------------------
+
+Let me answer your questions and give you some additional context to consider:
+
+* **my apologies for the data quality issues.  I doublechecked and the "20-Dec" data is an anomaly and a data quality issue.  My data people are idiots and they didn't load the data correctly.**
+  * "20-Dec" should really be "12-20" for the "AgeBracket".  
+  * Can you do me a favor?  It's going to take my data engineers another 6 months on a backlog to fix the data.  Can you just assume, for now that `"20-Dec" = 12-20` for the AgeBracket?  
+* A little more about our business may help you.  
+  * We are a retailer of **cold weather apparel** sold to mostly to the **Under 40** demographic.  
+  * we are omni-channel but only about 20% of our receipts are from our shopping mall stores.  
+
+I also just confirmed some things with the CMO about HOW her team conducted the interviews.  Here's the key findings:
+* the surveys were only taken at one mall location in California.  
+* the surveys were conducted **as the shoppers where leaving the store**
+* in many cases the respondents would not give their actual age ranges and the folks conducting the surveys guessed at their age ranges.  
+* the survey looked like this:  
+
+Store Survey
+1. Did you hear about us through social media?  Yes/No
+2. If you answered "yes", which social media website?  
+
+With this new information, can you provide any additional insights?  
+
+![](./img/cmo-survey-design.png)
+
+### Drill Press
