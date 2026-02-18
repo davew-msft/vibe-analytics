@@ -89,3 +89,7 @@ Let's look at some demos to show you the _Art of the Possible_.
 ## 4. Demo:  Using Excel
 
 [We can do analytics on Excel data that is really hard to do with JUST excel](./excel-example/Reading-Comprehension.xlsx)
+
+## 5. Demo:  Vibe Data Engineering
+
+Can we do Spark Structured Streaming _vibe coding_-style?  Yes.  [This is one approach](./Streaming-README.ipynb)
