@@ -54,7 +54,17 @@ This work is cumbersome and error-prone, even for the best data scientists and e
 
 ## What do I need to get started?
 
-Right now...this works best using:  
+Minimally, to do Vibe Analytics you need:
+
+* an IDE 
+  * suggestion:  vscode
+* python, SQL, or Spark (this is the "compute" engine)
+  * an MCP server(s) for the compute engine.  
+  * in the case of vscode, when you have the "extension" loaded for your compute engine it will also likely install the MCP server
+* an LLM that can interpret the prompt and build the compute-engine commands
+  * suggestion:  github copilot and any coding agent
+
+Right now...this works BEST using:  
 
 * vscode
 * Fabric (which has MCPs for vscode to assist with Vibe Analytics).  
@@ -63,33 +73,37 @@ Right now...this works best using:
 * Spark notebooks/Jupyter notebooks
   * these work best because they have the ability to display visualizations, can connect to various data sources, etc
 
-**While this is likely NOT IDEAL for business people to do analytics, it is not difficult to set these things up and it gives you the most flexibility**.  If you are interested, at the Microsoft Innovation Hub, we do additional sessions where we can show you have to set all of this up so the business user can simply use a browser to accomplish these tasks.  
+**While it is NOT IDEAL for business people to have to install vscode to do analytics, it is not difficult to set these things up and it gives you the most flexibility**.  If you are interested, at the Microsoft Innovation Hub, we do additional sessions where we can show you have to set all of this up so the business user can simply use a browser to accomplish these tasks.  
 
 [How to Setup Your Environment](./env-setup.md)
 
-## 1. Demo with CRIT prompts
+## Demos 
 
 Let's look at some demos to show you the _Art of the Possible_.  
 
+### 1. CRIT prompt basics and "Guided Analytics"
+
+Guided Analytics is my term for analytics where the LLM/agent is helping the business user _reason_ over the data.  Think of _Guided Analytics_ as just another term for EDA (Exploratory Data Analytics).  
+
 * [Here's an End-to-End Demo Using CRIT prompting and Guided Analytics techniques](./GuidedAnalytics/README.md)
-  * We'll look at _Guided Analytics_ (which is just another term for EDA)
-  * CRIT prompting
   * using Microsoft Fabric for Vibe Analytics (Guided Analytics)
 
-## 2. Demo:  Can the LLM spot the problem with our data and recommend prescriptive actions?  
+### 2. Can the LLM spot the problem with our data and recommend prescriptive actions?  
 
-  Even more importantly, can you figure it out?  
+Even more importantly, can you figure it out?  
 
-  [Follow along in this Fabric Spark notebook](./CognitiveMistakes.ipynb)
+[Follow along in this Fabric Spark notebook](./CognitiveMistakes.ipynb)
 
-## 3. Demo:  Marketing Surveys
+### 3. Marketing Survey Analytics
 
 [Follow along in this Fabric Spark notebook](./MarketingAnalytics/Marketing.ipynb)
 
-## 4. Demo:  Using Excel
+### 4. Using Excel
 
-[We can do analytics on Excel data that is really hard to do with JUST excel](./excel-example/Reading-Comprehension.xlsx)
+[We can do analytics on Excel data that is really hard to do with JUST excel](./excel-example/excel-example.ipynb)
 
-## 5. Demo:  Vibe Data Engineering
+  * We'll take a poorly structured Excel file, fix it up, and do analytics on it.  
+
+### 5. _Vibe Data Engineering_
 
 Can we do Spark Structured Streaming _vibe coding_-style?  Yes.  [This is one approach](./Streaming-README.ipynb)
