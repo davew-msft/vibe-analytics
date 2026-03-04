@@ -73,6 +73,10 @@ Right now...this works BEST using:
 * Spark notebooks/Jupyter notebooks
   * these work best because they have the ability to display visualizations, can connect to various data sources, etc
 
+>**If you are using Fabric and ghcp "hangs" on `Preparing...`, `Analyzing...` or `Processing...` ... this is a known bug in the vscode `Fabric Data Engineering` extension for AT LEAST versions v1.18 and v1.19.  Simply click the dropdown next to Uninstall and install `v1.17`.  See screenshot below.** 
+
+![alt text](./img/fde.png)
+
 **While it is NOT IDEAL for business people to have to install vscode to do analytics, it is not difficult to set these things up and it gives you the most flexibility**.  If you are interested, at the Microsoft Innovation Hub, we do additional sessions where we can show you have to set all of this up so the business user can simply use a browser to accomplish these tasks.  
 
 [How to Setup Your Environment](./env-setup.md)
