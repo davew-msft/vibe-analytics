@@ -1,4 +1,4 @@
-What you will need to follow along:  
+What you will need to follow along with me:  
 
 * vscode
 * Fabric extension (which includes the MCP server)
