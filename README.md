@@ -209,7 +209,16 @@ For technical teams: See how Vibe principles apply to data engineering tasks lik
 
 **[Vibe Data Engineering with Spark Streaming](./Streaming-README.ipynb)**
 
+### 6. Manufacturing Root-Cause: "The $500K Press That Wasn't the Problem"
+
+A manufacturing OEE (Overall Equipment Effectiveness) story for discrete manufacturing (blow-molded HDPE bottles). The obvious answer—"replace the bad press"—turns out to be wrong once the LLM helps us reason across three disconnected systems (SAP MII, an MES/PI historian, and a process engineer's Excel file). One root cause explains all three OEE losses, and we avoid a $500K capital mistake.
+
+**[Manufacturing OEE Root-Cause Demo](./ManufacturingOEE/README.md)**
+- Shows how LLM-assisted analytics stitches together data no single dashboard connects
+- Great for plant leadership: the deliverable is a dollar figure, not a chart
+
 ---
+
 
 ## Ready to Transform Your Analytics?
 
