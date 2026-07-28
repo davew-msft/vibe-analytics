@@ -98,7 +98,7 @@ You are attached to a Microsoft Fabric Spark Notebook with an attached lakehouse
 
 I have 2 schemas in this lakehouse:  sapmii and aveva.  Each schema has a few tables in it.  
 
-Can you show me which tables exist in those schemas?  I want to run some analytics on them with you.  
+Can you show me which tables exist in each schema?  I want to run some analytics on them with you.  
 Show all of your work in the actual Spark notebook. You have permission to run all cells.
 
 
