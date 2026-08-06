@@ -217,6 +217,8 @@ A manufacturing OEE (Overall Equipment Effectiveness) story for discrete manufac
 - Shows how LLM-assisted analytics stitches together data no single dashboard connects
 - Great for plant leadership: the deliverable is a dollar figure, not a chart
 
+### 7. Healthcare (wip)
+
 ---
 
 

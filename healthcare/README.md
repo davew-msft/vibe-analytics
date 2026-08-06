@@ -128,57 +128,11 @@ attached. Full framework background is in the [top-level README](../README.md).
 > and lands on the decision memo (agency ≈ **\$721K / 6 mo**, ~**100%** on the three Cherry units,
 > **\$1.44M** annualized — vs. the \$4M bonus).
 
-### Prompt 0 — Orient and load
 
-```text
-You are attached to a Microsoft Fabric Spark Notebook with an attached lakehouse.
 
-I have three schemas in this lakehouse: epic, peoplesoft, and kronos. Each has a few tables from a
-newly-merged health system (Epic clinical, Oracle PeopleSoft HR, Kronos timekeeping). I also have a
-nurse manager's Excel file, unit_manager_scheduling_log.xlsx, uploaded to Files.
 
-Show me which tables exist in each schema and 5 sample rows from each. I want to run analytics on
-them with you. Show all your work in the notebook — you have permission to run all cells.
-```
 
-### Prompt 1 — Generate competing hypotheses (do NOT accept the obvious)
 
-```text
-> Context:
-Look at my lakehouse. Travel-agency nurse spend has exploded. Our turnover dashboard says the
-Legacy Cherry campus is worst and that nurses are leaving for pay — PeopleSoft termination reasons
-are mostly "Relocation" and "Personal." Leadership wants to spend $4,000,000 on a system-wide RN
-sign-on/retention bonus. Assume the data is roughly accurate but VERIFY anything before you rely on
-it — INCLUDING whether the termination reason codes and the cross-system cost-center joins are
-trustworthy after the merger.
-
-> Role:
-You are a nursing-workforce data scientist with 15 years in hospital operations doing labor-cost
-and retention root-cause analysis. You are deeply skeptical of "obvious" answers and of hand-entered
-HR reason codes. You know that in nursing, SCHEDULE and FLOAT problems frequently masquerade as pay
-or "personal" problems. You are new to this system and its post-merger data quality, so start with
-Exploratory Data Analysis.
-
-> Interview:
-I am the CNO working with the CFO. Do NOT tell me to approve the bonus. Give me FIVE competing
-hypotheses for why agency spend and turnover are high, ranked by how testable they are with the data
-I have. For each, name the exact table(s) and the query that would CONFIRM or REFUTE it. Then ask me
-clarifying questions. We will test them together — actively try to prove the "low pay" story WRONG.
-
-> Task:
-Go!
-```
-
-### Prompt 2 — Kill the pay hypothesis
-
-```text
-> Task:
-Test the "they leave because pay is below market" hypothesis first. Join PeopleSoft COMPRATE (and
-add Kronos overtime earnings for effective pay) to RN turnover rate by unit. If pay drove turnover,
-the lowest-paid units should be worst. Show me the ranking and tell me honestly whether this
-hypothesis survives. Don't soften it — if the highest-paid units are churning worst, say so, and
-tell me what to look at next.
-```
 
 ### Prompt 3 — Kill the acuity hypothesis, then follow the symptoms
 
@@ -230,3 +184,66 @@ Give me a prescriptive recommendation with an estimated dollar impact.
   schedule on three units.
 - **This is a replacement for the dashboard, not a companion to it** — which is exactly where the
   Fabric App vision goes next. See [`fabric-app-ux.md`](./fabric-app-ux.md).
+
+
+
+## The CRIT Prompts
+
+### Prompt 0 — Orient and load
+
+```text
+You are attached to a Microsoft Fabric Spark Notebook with an attached lakehouse.
+
+I have three schemas in this lakehouse: epic, peoplesoft, and kronos. Each has a few tables from a
+newly-merged health system (Epic clinical, Oracle PeopleSoft HR, Kronos timekeeping). 
+
+Show me which tables exist in each schema and 5 sample rows from each. I want to run analytics on
+them with you. Show all your work in the notebook — you have permission to run all cells and KEEP all modifications to the notebook that you make.
+```
+
+### Prompt 1 — Generate competing hypotheses (do NOT accept the obvious)
+
+```text
+> Context:
+
+Look at my lakehouse. Travel-agency nurse spend has exploded. Our turnover dashboard says the
+Legacy Cherry campus is worst and that nurses are leaving for pay — PeopleSoft termination reasons
+are mostly "Relocation" and "Personal." Leadership wants to spend $4,000,000 on a system-wide RN
+sign-on/retention bonus. Assume the data is roughly accurate but VERIFY anything before you rely on
+it — INCLUDING whether the termination reason codes and the cross-system cost-center joins are
+trustworthy after the merger.
+
+> Role:
+You are a nursing-workforce data scientist with 10 years in hospital operations doing labor-cost
+and retention root-cause analysis. You are deeply skeptical of "obvious" answers and of hand-entered
+HR reason codes. You know that in nursing, SCHEDULE and FLOAT problems frequently masquerade as pay
+or "personal" problems. You are new to this system and its post-merger data quality, so start with
+Exploratory Data Analysis.
+
+> Interview:
+I am the CNO working with the CFO. Do NOT tell me to approve the bonus. Give me FIVE competing
+hypotheses for why agency spend and turnover are high, ranked by how testable they are with the data
+I have. For each, name the exact table(s) and the query that would CONFIRM or REFUTE it. Then ask me
+clarifying questions. We will test them together — actively try to prove the "low pay" story WRONG.
+
+> Task:
+
+Show all of your work and document it within the notebook cells.  You can append new cells to the cell that are already there.  
+
+Go!
+```
+
+### Prompt 2 — Kill the pay hypothesis
+
+```text
+> Task:
+Test the "they leave because pay is below market" hypothesis first. Join PeopleSoft COMPRATE (and
+add Kronos overtime earnings for effective pay) to RN turnover rate by unit. If pay drove turnover,
+the lowest-paid units should be worst. Show me the ranking and tell me honestly whether this
+hypothesis survives. Don't soften it — if the highest-paid units are churning worst, say so, and
+tell me what to look at next.
+```
+
+
+---
+
