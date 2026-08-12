@@ -1,6 +1,6 @@
 # Agentic Analytics for Healthcare — "The $4M Bonus That Wasn't the Answer"
 
-A **Vibe Analytics** demo for a **newly-merged health system** (Epic on the clinical side,
+A **Vibe Analytics** demo for a health system (Epic on the clinical side,
 Oracle PeopleSoft for HR, Kronos for timekeeping). It shows how LLM-assisted analytics helps
 nurse-leadership and finance *reason* past the obvious-but-wrong answer to the real driver of
 runaway **travel-agency nurse spend** — and avoids a **$4,000,000** blanket-bonus mistake.
@@ -10,10 +10,9 @@ runaway **travel-agency nurse spend** — and avoids a **$4,000,000** blanket-bo
 > showed that the *highest-paid* units were churning worst — because the real problem was the
 > **schedule**, not the paycheck.
 
-> **Why this scenario:** it mirrors what this customer is living through right now — a large,
-> recently-combined multi-network system under real financial pressure, trying to cut labor cost
-> without cutting care, while stitching together data from formerly-separate hospitals. See
-> [`WHY-THIS-DEMO.md`](./WHY-THIS-DEMO.md) for the public news that shaped it.
+
+* [`Notebook-with-prompts.ipynb`](./Notebook-with-prompts.ipynb)
+  * a **local pandas** version of the analysis the agent with no Fabric connection. It executes end-to-end.  
 
 ---
 
@@ -44,8 +43,7 @@ No single system has the answer — that's the whole point.
 > **nurse manager's spreadsheet**. LLM-assisted analytics is what stitches them together.
 
 See [`data-loading.md`](./data-loading.md) to load everything into a Fabric Lakehouse, and
-[`data/`](./data) for the files (all synthetic; regenerate with
-[`data/generate_healthcare_data.py`](./data/generate_healthcare_data.py)).
+[`data/`](./data) for the files (all synthetic).
 
 ---
 
@@ -118,19 +116,6 @@ back out — exactly how real analysis feels, and far more memorable than a dash
 ---
 
 ## The CRIT prompts
-
-Paste these into GitHub Copilot Chat attached to a Fabric Spark notebook with the lakehouse
-attached. Full framework background is in the [top-level README](../README.md).
-
-> **Rehearse offline first:** [`Notebook-with-prompts.ipynb`](./Notebook-with-prompts.ipynb)
-> interleaves every prompt below with a **local pandas** version of the analysis the agent
-> produces, runnable against [`./data`](./data) with no Fabric connection. It executes end-to-end
-> and lands on the decision memo (agency ≈ **\$721K / 6 mo**, ~**100%** on the three Cherry units,
-> **\$1.44M** annualized — vs. the \$4M bonus).
-
-
-
-
 
 
 

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RN Turnover & Agency Spend — Executive Dashboard</title>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 24px 32px;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cp-text);
+}
+.header .subtitle {
+  font-size: 0.85rem;
+  color: var(--cp-text-muted);
+}
+.header .badge {
+  background: var(--cp-danger);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 20px 0 24px;
+}
+.kpi-card {
+  background: var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 0.625rem;
+  padding: 20px 24px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+}
+.kpi-card .kpi-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cp-text-muted);
+  margin-bottom: 4px;
+}
+.kpi-card .kpi-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--cp-text);
+}
+.kpi-card .kpi-value.danger { color: var(--cp-danger); }
+.kpi-card .kpi-value.warning { color: var(--cp-warning); }
+.kpi-card .kpi-detail {
+  font-size: 0.75rem;
+  color: var(--cp-text-soft);
+  margin-top: 2px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+}
+.card h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--cp-text);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+thead th {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--cp-border-strong);
+  color: var(--cp-text-muted);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+tbody td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--cp-border);
+  color: var(--cp-text);
+}
+tbody tr:hover { background: var(--cp-accent-soft); }
+.text-right { text-align: right; }
+.text-danger { color: var(--cp-danger); font-weight: 600; }
+.text-warning { color: var(--cp-warning); font-weight: 600; }
+.tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.tag-cherry { background: rgba(220, 38, 38, 0.1); color: var(--cp-danger); }
+.tag-metro { background: rgba(0, 120, 212, 0.1); color: var(--cp-link); }
+.tag-valley { background: rgba(22, 163, 74, 0.1); color: var(--cp-success); }
+
+.chart-container { position: relative; height: 260px; }
+
+.insight-box {
+  background: var(--cp-highlight);
+  border-left: 3px solid var(--cp-accent);
+  border-radius: 0 0.625rem 0.625rem 0;
+  padding: 16px 20px;
+  margin-top: 20px;
+}
+.insight-box .insight-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cp-accent);
+  margin-bottom: 4px;
+}
+.insight-box p {
+  font-size: 0.82rem;
+  color: var(--cp-text);
+  line-height: 1.5;
+}
+
+.footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--cp-text-muted);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>RN Turnover & Agency Spend</h1>
+    <span class="subtitle">Unified Health System · Jan–Jun 2026 · Source: PeopleSoft HR + Kronos Timekeeping</span>
+  </div>
+  <span class="badge">Action Required</span>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="kpi-label">System-wide RN Turnover</div>
+    <div class="kpi-value danger">26%</div>
+    <div class="kpi-detail">16 terms / 61 RN headcount</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Agency Spend (6 mo)</div>
+    <div class="kpi-value danger">$639K</div>
+    <div class="kpi-detail">~$1.28M annualized run-rate</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Worst Campus</div>
+    <div class="kpi-value warning">Legacy Cherry</div>
+    <div class="kpi-detail">11 of 16 terms (69%)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Proposed Solution</div>
+    <div class="kpi-value">$4.0M</div>
+    <div class="kpi-detail">System-wide RN retention bonus</div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>Turnover Rate by Unit</h2>
+    <div class="chart-container">
+      <canvas id="turnoverChart"></canvas>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Agency Spend by Unit (6-month total)</h2>
+    <div class="chart-container">
+      <canvas id="agencyChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<div class="grid-3">
+  <div class="card">
+    <h2>Unit Detail — Sorted by Turnover</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Unit</th>
+          <th>Campus</th>
+          <th class="text-right">Headcount</th>
+          <th class="text-right">Terms</th>
+          <th class="text-right">Turnover %</th>
+          <th class="text-right">Agency Hrs</th>
+          <th class="text-right">Agency $</th>
+        </tr>
+      </thead>
+      <tbody id="unitTable"></tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Termination Reasons (PeopleSoft)</h2>
+    <div class="chart-container" style="height:220px">
+      <canvas id="reasonChart"></canvas>
+    </div>
+    <table style="margin-top:16px">
+      <thead><tr><th>Reason</th><th class="text-right">Count</th><th class="text-right">%</th></tr></thead>
+      <tbody id="reasonTable"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="insight-box">
+  <div class="insight-title">Dashboard Insight</div>
+  <p>
+    Legacy Cherry accounts for <strong>69% of all terminations</strong> and the vast majority of agency cost.
+    Termination reasons indicate <strong>personal/relocation</strong> drivers — consistent with below-market
+    compensation. <strong>Recommendation:</strong> approve the $4,000,000 system-wide RN sign-on and retention
+    bonus to stem attrition and reduce agency dependence.
+  </p>
+</div>
+
+<div class="footer">
+  Data refresh: 2026-07-01 &nbsp;|&nbsp; HR Analytics · Workforce Planning &nbsp;|&nbsp; Confidential — do not distribute
+</div>
+
+<script>
+// --- Data (matches notebook Step 1 output) ---
+const units = [
+  { unit: "5 West Med/Surg",   network: "Legacy Cherry", headcount: 7, terms: 4, turnover: 57, agencyHrs: 2955, agencyCost: 318767 },
+  { unit: "Progressive Care",  network: "Legacy Cherry", headcount: 7, terms: 3, turnover: 43, agencyHrs: 1372, agencyCost: 149274 },
+  { unit: "4 East Med/Surg",   network: "Legacy Cherry", headcount: 6, terms: 2, turnover: 33, agencyHrs: 1492, agencyCost: 162178 },
+  { unit: "Ortho Surgical",    network: "Legacy Valley", headcount: 6, terms: 1, turnover: 17, agencyHrs: 0,    agencyCost: 0 },
+  { unit: "Medical ICU",       network: "Legacy Metro",  headcount: 8, terms: 1, turnover: 13, agencyHrs: 0,    agencyCost: 0 },
+  { unit: "Surgical ICU",      network: "Legacy Valley", headcount: 7, terms: 1, turnover: 14, agencyHrs: 0,    agencyCost: 0 },
+  { unit: "5 East Med/Surg",   network: "Legacy Metro",  headcount: 7, terms: 1, turnover: 14, agencyHrs: 0,    agencyCost: 0 },
+  { unit: "7 Tower Telemetry", network: "Legacy Metro",  headcount: 6, terms: 0, turnover: 0,  agencyHrs: 0,    agencyCost: 0 },
+  { unit: "3 North Med/Surg",  network: "Legacy Valley", headcount: 7, terms: 0, turnover: 0,  agencyHrs: 0,    agencyCost: 0 },
+];
+
+const reasons = [
+  { reason: "Voluntary - Relocation", count: 5 },
+  { reason: "Voluntary - Personal Reasons", count: 4 },
+  { reason: "Voluntary - Career Advancement", count: 3 },
+  { reason: "Voluntary - Compensation", count: 2 },
+  { reason: "Retirement", count: 1 },
+  { reason: "Voluntary - Scheduling / Work-Life", count: 1 },
+];
+
+// --- Colors ---
+function networkColor(net) {
+  if (net === "Legacy Cherry") return getComputedStyle(document.documentElement).getPropertyValue('--cp-danger').trim() || '#dc2626';
+  if (net === "Legacy Metro") return getComputedStyle(document.documentElement).getPropertyValue('--cp-link').trim() || '#0078d4';
+  return getComputedStyle(document.documentElement).getPropertyValue('--cp-success').trim() || '#16a34a';
+}
+function networkTag(net) {
+  if (net === "Legacy Cherry") return '<span class="tag tag-cherry">Cherry</span>';
+  if (net === "Legacy Metro") return '<span class="tag tag-metro">Metro</span>';
+  return '<span class="tag tag-valley">Valley</span>';
+}
+
+// --- Turnover bar chart ---
+const ctxTurn = document.getElementById('turnoverChart').getContext('2d');
+new Chart(ctxTurn, {
+  type: 'bar',
+  data: {
+    labels: units.map(u => u.unit.replace(' Med/Surg', '')),
+    datasets: [{
+      label: 'Turnover %',
+      data: units.map(u => u.turnover),
+      backgroundColor: units.map(u => networkColor(u.network)),
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.raw + '%' } }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Turnover %' }, grid: { color: 'rgba(128,128,128,0.1)' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// --- Agency spend bar chart ---
+const ctxAgy = document.getElementById('agencyChart').getContext('2d');
+new Chart(ctxAgy, {
+  type: 'bar',
+  data: {
+    labels: units.filter(u => u.agencyCost > 0).map(u => u.unit.replace(' Med/Surg', '')),
+    datasets: [{
+      label: 'Agency $',
+      data: units.filter(u => u.agencyCost > 0).map(u => u.agencyCost),
+      backgroundColor: units.filter(u => u.agencyCost > 0).map(u => networkColor(u.network)),
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => '$' + ctx.raw.toLocaleString() } }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Spend ($)' }, grid: { color: 'rgba(128,128,128,0.1)' },
+           ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// --- Reason donut ---
+const ctxReason = document.getElementById('reasonChart').getContext('2d');
+const reasonColors = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#d4d4d8', '#e5e5e5'];
+new Chart(ctxReason, {
+  type: 'doughnut',
+  data: {
+    labels: reasons.map(r => r.reason.replace('Voluntary - ', '')),
+    datasets: [{
+      data: reasons.map(r => r.count),
+      backgroundColor: reasonColors,
+      borderWidth: 0
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '60%',
+    plugins: {
+      legend: { position: 'right', labels: { boxWidth: 10, font: { size: 11 } } }
+    }
+  }
+});
+
+// --- Unit detail table ---
+const tbody = document.getElementById('unitTable');
+units.forEach(u => {
+  const turnClass = u.turnover >= 40 ? 'text-danger' : (u.turnover >= 15 ? 'text-warning' : '');
+  tbody.innerHTML += `<tr>
+    <td>${u.unit}</td>
+    <td>${networkTag(u.network)}</td>
+    <td class="text-right">${u.headcount}</td>
+    <td class="text-right">${u.terms}</td>
+    <td class="text-right ${turnClass}">${u.turnover}%</td>
+    <td class="text-right">${u.agencyHrs > 0 ? u.agencyHrs.toLocaleString() : '—'}</td>
+    <td class="text-right">${u.agencyCost > 0 ? '$' + u.agencyCost.toLocaleString() : '—'}</td>
+  </tr>`;
+});
+
+// --- Reason table ---
+const rtbody = document.getElementById('reasonTable');
+const totalTerms = reasons.reduce((s, r) => s + r.count, 0);
+reasons.forEach(r => {
+  rtbody.innerHTML += `<tr>
+    <td>${r.reason.replace('Voluntary - ', '')}</td>
+    <td class="text-right">${r.count}</td>
+    <td class="text-right">${Math.round(r.count/totalTerms*100)}%</td>
+  </tr>`;
+});
+</script>
+</body>
+</html>
