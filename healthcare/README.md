@@ -47,10 +47,12 @@ See [`data-loading.md`](./data-loading.md) to load everything into a Fabric Lake
 
 ---
 
-## The arc of the story (the talk track)
+## The arc of the story
 
 The demo deliberately walks the audience *into* the wrong conclusion, then uses the LLM to climb
 back out — exactly how real analysis feels, and far more memorable than a dashboard.
+
+[Open the dashboard to follow the narrative](./dashboard.html)
 
 ### Step 1 — The obvious (wrong) answer
 1. **Agency spend + turnover by campus** → **Legacy Cherry** is worst; **5 West** leads on both.
@@ -115,46 +117,8 @@ back out — exactly how real analysis feels, and far more memorable than a dash
 
 ---
 
-## The CRIT prompts
 
 
-
-### Prompt 3 — Kill the acuity hypothesis, then follow the symptoms
-
-```text
-> Task:
-The pay story is weak. Now rule out "the worst units just have sicker, heavier patients." Use
-epic.NursingUnitCensusFact (AcuityIndex, RequiredNursingHours, PatientDays) to compare the
-high-turnover units to the stable ones. Then, regardless of that result, use kronos.TIMECARD_SUMMARY
-to plot OT %, float hours, and max consecutive shifts over time by unit. If specific units destabilize
-in a specific window, tell me which units and which months — and what those units have in COMMON.
-```
-
-### Prompt 4 — Interrogate the data quality (both traps)
-
-```text
-> Task:
-Two data-quality checks before we trust any of this.
-(1) The terminations clustering in that window — what ACTION_REASON did PeopleSoft record? Compare
-that to the schedule stress you just found. Is "Scheduling/Work-Life" ever used? Tell me whether you
-believe the reason codes.
-(2) Total agency hours by unit from kronos.AGENCY_HOURS and reconcile them to the units. The three
-legacy networks use different cost-center formats, and watch for any shared/float-pool labor account
-that isn't a real unit. Tell me if a naive join UNDER-counts agency on the worst units, and by how
-much.
-```
-
-### Prompt 5 — Crack it with the spreadsheet, then quantify
-
-```text
-> Task:
-The suspect units share a Q2 escalation in float, OT, and consecutive shifts, but no system explains
-WHY April. Load the nurse manager's unit_manager_scheduling_log.xlsx and bring in BedsClosed,
-SelfSchedulingEnabled, MandatoryOT, FloatPolicy, and the free-text Notes for those units and months.
-Then quantify total agency spend (hours x bill rate, including the float-pool hours you recovered),
-show how concentrated it is on the three units, and contrast that with the $4,000,000 blanket bonus.
-Give me a prescriptive recommendation with an estimated dollar impact.
-```
 
 ---
 
@@ -184,6 +148,7 @@ newly-merged health system (Epic clinical, Oracle PeopleSoft HR, Kronos timekeep
 
 Show me which tables exist in each schema and 5 sample rows from each. I want to run analytics on
 them with you. Show all your work in the notebook — you have permission to run all cells and KEEP all modifications to the notebook that you make.
+Keep all the existing cells (for historical purposes) and add any new work at the end of the notebook.  
 ```
 
 ### Prompt 1 — Generate competing hypotheses (do NOT accept the obvious)
@@ -229,6 +194,42 @@ hypothesis survives. Don't soften it — if the highest-paid units are churning 
 tell me what to look at next.
 ```
 
+### Prompt 3 — Kill the acuity hypothesis, then follow the symptoms
+
+```text
+> Task:
+The pay story is weak. Now rule out "the worst units just have sicker, heavier patients." Use
+epic.NursingUnitCensusFact (AcuityIndex, RequiredNursingHours, PatientDays) to compare the
+high-turnover units to the stable ones. Then, regardless of that result, use kronos.TIMECARD_SUMMARY
+to plot OT %, float hours, and max consecutive shifts over time by unit. If specific units destabilize
+in a specific window, tell me which units and which months — and what those units have in COMMON.
+```
+
+### Prompt 4 — Interrogate the data quality (both traps)
+
+```text
+> Task:
+Two data-quality checks before we trust any of this.
+(1) The terminations clustering in that window — what ACTION_REASON did PeopleSoft record? Compare
+that to the schedule stress you just found. Is "Scheduling/Work-Life" ever used? Tell me whether you
+believe the reason codes.
+(2) Total agency hours by unit from kronos.AGENCY_HOURS and reconcile them to the units. The three
+legacy networks use different cost-center formats, and watch for any shared/float-pool labor account
+that isn't a real unit. Tell me if a naive join UNDER-counts agency on the worst units, and by how
+much.
+```
+
+### Prompt 5 — Crack it with the spreadsheet, then quantify
+
+```text
+> Task:
+The suspect units share a Q2 escalation in float, OT, and consecutive shifts, but no system explains
+WHY April. Load the nurse manager's unit_manager_scheduling_log.xlsx and bring in BedsClosed,
+SelfSchedulingEnabled, MandatoryOT, FloatPolicy, and the free-text Notes for those units and months.
+Then quantify total agency spend (hours x bill rate, including the float-pool hours you recovered),
+show how concentrated it is on the three units, and contrast that with the $4,000,000 blanket bonus.
+Give me a prescriptive recommendation with an estimated dollar impact.
+```
 
 ---
 
