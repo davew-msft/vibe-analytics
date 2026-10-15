@@ -1,0 +1,7 @@
+PAYCODE,DESCR,COUNTS_AS_WORKED
+REG,Regular Worked,Y
+OT,Overtime (1.5x),Y
+FLT,Float to Other Unit,Y
+CALL,Call-off / Cancelled,N
+ORI,Orientation,Y
+AGY,Agency / Travel Worked,Y

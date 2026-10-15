@@ -1,0 +1,9 @@
+ACTION,ACTION_REASON,DESCR
+TER,PER,Voluntary - Personal Reasons
+TER,REL,Voluntary - Relocation
+TER,COM,Voluntary - Compensation
+TER,CAR,Voluntary - Career Advancement
+TER,RET,Retirement
+TER,SCH,Voluntary - Scheduling / Work-Life Balance
+HIR,NEW,New Hire
+DTA,DTA,Data Change

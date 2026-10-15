@@ -225,6 +225,11 @@ this is wip.
 **[Intelligent Financial Foreasting](./fabric-plan/README.md)
 
 
+### 8. Healthcare 
+
+[Nursing Staffing Demo](./healthcare/README.md)
+
+
 ---
 
 

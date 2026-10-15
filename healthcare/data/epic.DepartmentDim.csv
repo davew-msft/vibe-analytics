@@ -1,0 +1,10 @@
+DepartmentKey,DepartmentName,LegacyNetwork,EpicCostCenter,SpecialtyType,LicensedBeds,MagnetDesignated
+1000,5 East Med/Surg,Legacy Metro,6101,MedSurg,32,Y
+1001,7 Tower Telemetry,Legacy Metro,6110,Telemetry,28,Y
+1002,Medical ICU,Legacy Metro,6120,ICU,20,Y
+1003,3 North Med/Surg,Legacy Valley,7101,MedSurg,30,Y
+1004,Ortho Surgical,Legacy Valley,7130,Surgical,26,Y
+1005,Surgical ICU,Legacy Valley,7120,ICU,18,Y
+1006,4 East Med/Surg,Legacy Cherry,8101,MedSurg,24,N
+1007,5 West Med/Surg,Legacy Cherry,8105,MedSurg,28,N
+1008,Progressive Care,Legacy Cherry,8115,PCU,22,N
