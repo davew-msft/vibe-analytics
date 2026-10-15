@@ -1,0 +1,6 @@
+RegionKey,Region,City,DistributorStatus
+West,West,Los Angeles,Active
+Mountain,Mountain,Denver,Active
+Midwest,Midwest,Chicago,Lost distributor 2025-09-01
+South,South,Atlanta,Active
+Northeast,Northeast,Boston,Active

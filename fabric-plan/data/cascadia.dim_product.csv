@@ -1,0 +1,15 @@
+ProductKey,Category,Brand,SKU,LifecycleStatus,ListPricePerCase,TargetGrossMarginPct
+SPK-LIME,Sparkling Water,Cascade Sparkling,SPK-LIME,Growth,14.0,0.55
+SPK-BERRY,Sparkling Water,Cascade Sparkling,SPK-BERRY,Growth,14.0,0.55
+SPK-PLAIN,Sparkling Water,Cascade Sparkling,SPK-PLAIN,Growth,14.0,0.55
+ENG-ORIG,Energy,Volt,ENG-ORIG,Growth,22.0,0.6
+ENG-ZERO,Energy,Volt,ENG-ZERO,Growth,22.0,0.6
+JUC-ORANGE,Juice,Orchard,JUC-ORANGE,Mature,16.0,0.42
+JUC-APPLE,Juice,Orchard,JUC-APPLE,Mature,16.0,0.42
+JUC-MANGO,Juice,Orchard,JUC-MANGO,Mature,16.0,0.42
+STL-500,Still Water,PureSpring,STL-500,Mature,9.0,0.38
+STL-1L,Still Water,PureSpring,STL-1L,Mature,9.0,0.38
+COLA-REG,Cola / CSD,ClassicCola,COLA-REG,Declining,12.0,0.45
+COLA-DIET,Cola / CSD,ClassicCola,COLA-DIET,Declining,12.0,0.45
+COLA-CHERRY,Cola / CSD,ClassicCola,COLA-CHERRY,Declining,12.0,0.45
+ROOT-BEER,Cola / CSD,ClassicCola,ROOT-BEER,Declining,12.0,0.45
